@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head>
+		<title>Register</title>
+		
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript">
+		//<![CDATA[
+		    function registrationErrors(a) {		    	
+		    	
+		    	if (a.indexOf("password") > -1) {
+		    		$("#passwordError").html("Enter password!");
+		    		$("#password").focus();
+		    	}
+		    	
+		    	if (a.indexOf("email") > -1) {
+		    		$("#emailError").html("Enter email!");
+		    		$("#email").focus();
+		    	}
+		    	
+		    	if (a.indexOf("already") > -1) {
+		    		$("#emailError").html("Username already taken!");
+		    		$("#email").focus();
+		    	}
+		    	
+		    	if (a.indexOf("last") > -1) {
+		    		$("#lastNameError").html("Enter last name!");
+		    		$("#lastName").focus();
+		    	}
+		    	
+		    	if (a.indexOf("first") > -1) {
+		    		$("#firstNameError").html("Enter first name!");
+		    		$("#firstName").focus();
+		    	}
+		    }
+		           
+		    function register() {
+			
+		    	$("td.error").html("").css("color", "red");
+		    	
+				var user = { firstName: $("#firstName").val(), lastName: $("#lastName").val(), 
+								email: $("#email").val(), password: $("#password").val() };
+				
+				$.ajax({
+					
+					type: "POST",
+			        contentType: "application/json; charset=utf-8",
+			        url: "/register",
+			        data: JSON.stringify(user),
+			        dataType: "text"
+					
+				}).done(function(a){
+					
+					if (a == "") {
+						
+						$("#goToProfile").click();
+					
+					} else {
+						
+						registrationErrors(a);
+					}
+					
+				}).fail(function(){
+					
+					alert("Fail!");
+				});
+			}
+			    		
+			$(document).ready(function() {
+			
+				$("#registerButton").click(function(){	
+					register();
+				});
+						
+				$(document).on("keydown", function(e){
+
+					if (e.keyCode == 13) {
+					
+						register();
+					}
+				});
+			});
+		//]]>	
+		</script>
+	</head>
+	<body>
+		<h3>Enter some informations about you</h3>
+				
+		<table>
+			<tr>
+				<td><input type="text" id="firstName" placeholder="First name" autofocus="autofocus" maxlength="20" /></td>
+				<td class="error" id="firstNameError"></td>
+			</tr>
+			<tr>
+				<td><input type="text" id="lastName" placeholder="Last name" maxlength="20" /></td>
+				<td class="error" id="lastNameError"></td>
+			</tr>
+			<tr>
+				<td><input type="email" id="email" placeholder="E-mail" maxlength="40" /></td>
+				<td class="error" id="emailError"></td>
+			</tr>
+			<tr>
+				<td><input type="password" id="password" placeholder="Password" maxlength="20" /></td>
+				<td class="error" id="passwordError"></td>
+			</tr>
+			<tr>
+				<td><button id="registerButton">Register</button></td>
+			</tr>
+		</table>
+		
+		<br/>
+							
+		<form action="/" method="GET">
+			<button type="submit">Back</button>
+		</form>
+		
+		<form action="/profile" method="GET" style="display: none;">
+			<button id="goToProfile">Go to profile page</button>
+		</form>
+						
+	</body>
+</html>

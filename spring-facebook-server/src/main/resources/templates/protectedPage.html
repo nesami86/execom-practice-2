@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head>
+		<title>Protected page</title>
+	</head>
+	<body>
+		<h3>Hello, <span th:text="${ username }" id="username"></span></h3>
+	
+		<h4>
+			This is protected page which essentially does nothing, 
+			just serves the purpose of testing Spring Security at work!
+		</h4>
+			
+		<form action="/facebookHome" method="POST" id="backForm">
+			<button type="submit">Back</button>
+		</form>
+		
+		<br/>
+			
+		<form action="/signout" method="GET">
+			<button type="submit">Log Out</button>
+		</form>
+		
+		<script type="text/javascript">
+			var username = document.getElementById("username").innerHTML;
+			
+			if (username.indexOf("@") > -1) {
+				document.getElementById("backForm").setAttribute("action", "/profile");
+			}
+		</script>
+		
+	</body>
+</html>

@@ -1,4 +1,4 @@
-package spring.facebook.databaseStaffs;
+package spring.facebook.database;
 
 import java.util.List;
 

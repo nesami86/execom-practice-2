@@ -11,7 +11,7 @@ import org.springframework.social.facebook.api.FacebookProfile;
 import org.springframework.social.facebook.api.Post;
 import org.springframework.stereotype.Component;
 
-import spring.facebook.databaseStaffs.DatabaseIO;
+import spring.facebook.database.DatabaseIO;
 import spring.facebook.entities.FacebookPost;
 import spring.facebook.entities.User;
 

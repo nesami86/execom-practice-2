@@ -16,7 +16,7 @@ import org.springframework.social.facebook.api.UserOperations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import spring.facebook.databaseStaffs.DatabaseIO;
+import spring.facebook.database.DatabaseIO;
 import spring.facebook.entities.Comment;
 import spring.facebook.entities.FacebookPost;
 import spring.facebook.entities.User;

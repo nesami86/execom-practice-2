@@ -9,7 +9,7 @@ import org.springframework.social.facebook.api.Facebook;
 import org.springframework.stereotype.Component;
 
 import spring.facebook.TrainWrecks;
-import spring.facebook.databaseStaffs.DatabaseIO;
+import spring.facebook.database.DatabaseIO;
 import spring.facebook.entities.User;
 
 @Component

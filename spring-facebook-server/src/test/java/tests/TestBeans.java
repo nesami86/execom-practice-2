@@ -10,9 +10,9 @@ import org.springframework.social.facebook.api.Post;
 import org.springframework.social.facebook.api.UserOperations;
 import org.springframework.ui.Model;
 
-import spring.facebook.databaseStaffs.CommentRepository;
-import spring.facebook.databaseStaffs.FacebookPostRepository;
-import spring.facebook.databaseStaffs.UserRepository;
+import spring.facebook.database.CommentRepository;
+import spring.facebook.database.FacebookPostRepository;
+import spring.facebook.database.UserRepository;
 import spring.facebook.entities.Comment;
 import spring.facebook.entities.FacebookPost;
 import spring.facebook.entities.User;

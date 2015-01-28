@@ -5,7 +5,7 @@ import org.springframework.social.facebook.api.Facebook;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
-import spring.facebook.databaseStaffs.DatabaseIO;
+import spring.facebook.database.DatabaseIO;
 import spring.facebook.entities.User;
 
 @Component

@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import spring.facebook.databaseStaffs.CommentRepository;
-import spring.facebook.databaseStaffs.DatabaseIO;
-import spring.facebook.databaseStaffs.FacebookPostRepository;
-import spring.facebook.databaseStaffs.UserRepository;
+import spring.facebook.database.CommentRepository;
+import spring.facebook.database.DatabaseIO;
+import spring.facebook.database.FacebookPostRepository;
+import spring.facebook.database.UserRepository;
 import spring.facebook.entities.Comment;
 import spring.facebook.entities.FacebookPost;
 import spring.facebook.entities.User;

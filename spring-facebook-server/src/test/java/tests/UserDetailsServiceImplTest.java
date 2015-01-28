@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import spring.facebook.databaseStaffs.DatabaseIO;
-import spring.facebook.databaseStaffs.UserRepository;
+import spring.facebook.database.DatabaseIO;
+import spring.facebook.database.UserRepository;
 import spring.facebook.entities.User;
 import spring.facebook.utils.Authentications;
 import spring.facebook.utils.Checks;

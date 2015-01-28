@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import spring.facebook.databaseStaffs.UserRepository;
+import spring.facebook.database.UserRepository;
 import spring.facebook.entities.User;
 
 /**

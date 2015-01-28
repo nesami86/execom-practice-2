@@ -1,9 +1,9 @@
-package package1.databaseStaffs;
+package spring.facebook.databaseStaffs;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
-import package1.entities.Comment;
+import spring.facebook.entities.Comment;
 
 @Component
 public interface CommentRepository extends CrudRepository<Comment, Long> {

@@ -12,13 +12,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import package1.databaseStaffs.DatabaseIO;
-import package1.entities.User;
-import package1.utils.Authentications;
-import package1.utils.Checks;
-import package1.utils.ConvertUsers;
-import package1.utils.UserDetailsServiceImpl;
-import package1.utils.WorksWithEntities;
+import spring.facebook.databaseStaffs.DatabaseIO;
+import spring.facebook.entities.User;
+import spring.facebook.utils.Authentications;
+import spring.facebook.utils.Checks;
+import spring.facebook.utils.ConvertUsers;
+import spring.facebook.utils.UserDetailsServiceImpl;
+import spring.facebook.utils.WorksWithEntities;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;

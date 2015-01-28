@@ -10,13 +10,13 @@ import org.springframework.social.facebook.api.Post;
 import org.springframework.social.facebook.api.UserOperations;
 import org.springframework.ui.Model;
 
-import package1.databaseStaffs.CommentRepository;
-import package1.databaseStaffs.FacebookPostRepository;
-import package1.databaseStaffs.UserRepository;
-import package1.entities.Comment;
-import package1.entities.FacebookPost;
-import package1.entities.User;
-import package1.utils.ConvertUsers;
+import spring.facebook.databaseStaffs.CommentRepository;
+import spring.facebook.databaseStaffs.FacebookPostRepository;
+import spring.facebook.databaseStaffs.UserRepository;
+import spring.facebook.entities.Comment;
+import spring.facebook.entities.FacebookPost;
+import spring.facebook.entities.User;
+import spring.facebook.utils.ConvertUsers;
 
 import static org.mockito.Mockito.mock;
 

@@ -1,4 +1,4 @@
-package package1.utils;
+package spring.facebook.utils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,9 +11,9 @@ import org.springframework.social.facebook.api.FacebookProfile;
 import org.springframework.social.facebook.api.Post;
 import org.springframework.stereotype.Component;
 
-import package1.databaseStaffs.DatabaseIO;
-import package1.entities.FacebookPost;
-import package1.entities.User;
+import spring.facebook.databaseStaffs.DatabaseIO;
+import spring.facebook.entities.FacebookPost;
+import spring.facebook.entities.User;
 
 @Component
 public class WorksWithEntities {
@@ -82,7 +82,7 @@ public class WorksWithEntities {
 	public FacebookPost createFacebookPost(Post post, User user) {
 		FacebookPost facebookPost = new FacebookPost();
 		facebookPost.setRealFacebookId(post.getId().split("_")[1]);
-		facebookPost.setUsersWithThisPost(getUsersWithThisPost(post, user));
+		facebookPost.setUsersWithThisPost(getUsersWithThisPost(user));
 		facebookPost.setAuthorsName(post.getFrom().getName());
 		facebookPost.setDateCreated(post.getCreatedTime());
 		facebookPost.setText(post.getMessage());
@@ -107,17 +107,17 @@ public class WorksWithEntities {
 		return false;
 	}
 			
-	public List<User> getUsersWithThisPost(Post post, User user) {
+	public List<User> getUsersWithThisPost(User user) {
 		List<User> users = new ArrayList<User>();
 		users.add(user);
 		return users;
 	}
 	
-	public List<package1.entities.Comment> getPostsComments(Post post, FacebookPost facebookPost) {
-		List<package1.entities.Comment> comments = new ArrayList<package1.entities.Comment>();
+	public List<spring.facebook.entities.Comment> getPostsComments(Post post, FacebookPost facebookPost) {
+		List<spring.facebook.entities.Comment> comments = new ArrayList<spring.facebook.entities.Comment>();
 		
 		for (Comment comment : post.getComments()) {
-			package1.entities.Comment comm = new package1.entities.Comment();
+			spring.facebook.entities.Comment comm = new spring.facebook.entities.Comment();
 			comm.setFacebookPost(facebookPost);
 			comm.setAuthorsName(comment.getFrom().getName());
 			comm.setDateCreated(comment.getCreatedTime());
@@ -142,12 +142,12 @@ public class WorksWithEntities {
 	public void addComment(String text, long postId, String username) {
 		FacebookPost post = databaseIO.getPostFromDatabaseById(postId);
 		User user = databaseIO.getUserFromDbByEmail(username);
-		package1.entities.Comment comment = createComment(text, post, user);
+		spring.facebook.entities.Comment comment = createComment(text, post, user);
 		databaseIO.saveCommentToDatabase(comment);
 	}
 	
-	public package1.entities.Comment createComment(String text, FacebookPost post, User user) {
-		package1.entities.Comment comment = new package1.entities.Comment();
+	public spring.facebook.entities.Comment createComment(String text, FacebookPost post, User user) {
+		spring.facebook.entities.Comment comment = new spring.facebook.entities.Comment();
 		comment.setText(text);
 		comment.setFacebookPost(post);
 		comment.setDateCreated(Calendar.getInstance().getTime());

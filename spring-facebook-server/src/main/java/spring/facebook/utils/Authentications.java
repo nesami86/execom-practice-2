@@ -1,4 +1,4 @@
-package package1.utils;
+package spring.facebook.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -8,9 +8,9 @@ import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.stereotype.Component;
 
-import package1.TrainWrecks;
-import package1.databaseStaffs.DatabaseIO;
-import package1.entities.User;
+import spring.facebook.TrainWrecks;
+import spring.facebook.databaseStaffs.DatabaseIO;
+import spring.facebook.entities.User;
 
 @Component
 public class Authentications extends TrainWrecks {
@@ -46,7 +46,7 @@ public class Authentications extends TrainWrecks {
 	}
 	
 	public void destroyFacebookConnection() {
-		if (connectionRepository.findConnections(Facebook.class).size() > 0) {
+		if (!connectionRepository.findConnections(Facebook.class).isEmpty()) {
 			connectionRepository.removeConnections(getFacebookConnectionId());
 		}
 	}

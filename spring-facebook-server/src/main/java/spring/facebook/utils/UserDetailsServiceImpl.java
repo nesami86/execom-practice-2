@@ -1,4 +1,4 @@
-package package1.utils;
+package spring.facebook.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import package1.databaseStaffs.UserRepository;
-import package1.entities.User;
+import spring.facebook.databaseStaffs.UserRepository;
+import spring.facebook.entities.User;
 
 /**
  * Gets converted users from database

@@ -1,9 +1,9 @@
-package package1.databaseStaffs;
+package spring.facebook.databaseStaffs;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
-import package1.entities.FacebookPost;
+import spring.facebook.entities.FacebookPost;
 
 @Component
 public interface FacebookPostRepository extends CrudRepository<FacebookPost, Long> {

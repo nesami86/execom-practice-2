@@ -1,4 +1,4 @@
-package package1.entities;
+package spring.facebook.entities;
 
 import java.util.List;
 

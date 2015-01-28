@@ -16,14 +16,14 @@ import org.springframework.social.facebook.api.UserOperations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import package1.databaseStaffs.DatabaseIO;
-import package1.entities.Comment;
-import package1.entities.FacebookPost;
-import package1.entities.User;
-import package1.utils.Authentications;
-import package1.utils.Checks;
-import package1.utils.UserDetailsServiceImpl;
-import package1.utils.WorksWithEntities;
+import spring.facebook.databaseStaffs.DatabaseIO;
+import spring.facebook.entities.Comment;
+import spring.facebook.entities.FacebookPost;
+import spring.facebook.entities.User;
+import spring.facebook.utils.Authentications;
+import spring.facebook.utils.Checks;
+import spring.facebook.utils.UserDetailsServiceImpl;
+import spring.facebook.utils.WorksWithEntities;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyLong;
@@ -162,7 +162,7 @@ public class WorksWithEntitiesTest {
 		List<User> users = new ArrayList<User>();
 		users.add(user);
 		
-		assertEquals(users, worksWithEntities.getUsersWithThisPost(post, user));
+		assertEquals(users, worksWithEntities.getUsersWithThisPost(user));
 	}
 	
 	@Test

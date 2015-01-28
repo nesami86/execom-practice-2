@@ -1,4 +1,4 @@
-package package1;
+package spring.facebook;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.facebook.api.Facebook;
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import package1.entities.User;
-import package1.utils.Authentications;
-import package1.utils.Checks;
-import package1.utils.FillingContentOnThePage;
-import package1.utils.WorksWithEntities;
+import spring.facebook.entities.User;
+import spring.facebook.utils.Authentications;
+import spring.facebook.utils.Checks;
+import spring.facebook.utils.FillingContentOnThePage;
+import spring.facebook.utils.WorksWithEntities;
 
 @Controller
 @RequestMapping("/")
@@ -62,7 +62,7 @@ public class WebController extends TrainWrecks {
 	}
 	
 	@RequestMapping("/register")
-	public @ResponseBody String register(@RequestBody User user, Model model) {
+	public @ResponseBody String register(@RequestBody User user) {
 		return checks.verifyRegistration(user);
 	}
 	
@@ -74,8 +74,7 @@ public class WebController extends TrainWrecks {
 		
 	@RequestMapping("/facebookHome")
 	public String getFacebookHomePage(Model model) {
-		fillingContentOnThePage.fillFacebookHomePageFromDatabase(model, getAuthenticatedUsersName());
-		return "hello2";
+		return getHello2Page(model);
 	}
 	
 	@RequestMapping("/protectedPage")
@@ -93,34 +92,34 @@ public class WebController extends TrainWrecks {
 	@RequestMapping("/deleteComment")
 	public String deleteComment(@RequestParam("commentId") String id, Model model) {
 		worksWithEntities.deleteComment(Long.parseLong(id));
-		fillingContentOnThePage.fillFacebookHomePageFromDatabase(model, getAuthenticatedUsersName());
-		return "hello2";
+		return getHello2Page(model);
 	}
 	
 	@RequestMapping("/addComment")
 	public String addComment(@RequestParam("text") String text, @RequestParam("postId") String postId, Model model) {
 		worksWithEntities.addComment(text, Long.parseLong(postId), getAuthenticatedUsersName());		
-		fillingContentOnThePage.fillFacebookHomePageFromDatabase(model, getAuthenticatedUsersName());		
-		return "hello2";
+		return getHello2Page(model);
 	}
 	
 	@RequestMapping("/removePost")
 	public String removePost(@RequestParam("postId") String id, Model model) {
 		worksWithEntities.removePostFromUsersHomePage(Long.parseLong(id), getAuthenticatedUsersName());
-		fillingContentOnThePage.fillFacebookHomePageFromDatabase(model, getAuthenticatedUsersName());
-		return "hello2";
+		return getHello2Page(model);
 	}
 	
 	@RequestMapping("/deletePost")
 	public String deletePost(@RequestParam("postId") String id, Model model) {
 		worksWithEntities.deletePost(Long.parseLong(id));
-		fillingContentOnThePage.fillFacebookHomePageFromDatabase(model, getAuthenticatedUsersName());
-		return "hello2";
+		return getHello2Page(model);
 	}
 	
 	@RequestMapping("/addPost")
 	public String addPost(@RequestParam("text") String text, Model model) {
 		worksWithEntities.createPost(text, getAuthenticatedUsersName());
+		return getHello2Page(model);
+	}
+	
+	public String getHello2Page(Model model) {
 		fillingContentOnThePage.fillFacebookHomePageFromDatabase(model, getAuthenticatedUsersName());
 		return "hello2";
 	}

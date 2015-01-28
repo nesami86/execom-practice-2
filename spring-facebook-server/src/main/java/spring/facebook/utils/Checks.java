@@ -1,11 +1,11 @@
-package package1.utils;
+package spring.facebook.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.stereotype.Component;
 
-import package1.databaseStaffs.DatabaseIO;
-import package1.entities.User;
+import spring.facebook.databaseStaffs.DatabaseIO;
+import spring.facebook.entities.User;
 
 @Component
 public class Checks {

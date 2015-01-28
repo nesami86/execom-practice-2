@@ -14,14 +14,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ui.Model;
 
-import package1.WebController;
-import package1.databaseStaffs.DatabaseIO;
-import package1.entities.User;
-import package1.utils.Authentications;
-import package1.utils.Checks;
-import package1.utils.FillingContentOnThePage;
-import package1.utils.UserDetailsServiceImpl;
-import package1.utils.WorksWithEntities;
+import spring.facebook.WebController;
+import spring.facebook.databaseStaffs.DatabaseIO;
+import spring.facebook.entities.User;
+import spring.facebook.utils.Authentications;
+import spring.facebook.utils.Checks;
+import spring.facebook.utils.FillingContentOnThePage;
+import spring.facebook.utils.UserDetailsServiceImpl;
+import spring.facebook.utils.WorksWithEntities;
 import static org.junit.Assert.assertEquals;
 
 import static org.mockito.Mockito.mock;
@@ -132,13 +132,13 @@ public class WebControllerTest {
 	@Test
 	public void registerTest1() {
 		when(checks.verifyRegistration(user)).thenReturn("");
-		assertEquals("", webController.register(user, model));
+		assertEquals("", webController.register(user));
 	}
 	
 	@Test
 	public void registerTest2() {
 		when(checks.verifyRegistration(user)).thenReturn("email is already taken ");
-		assertEquals("email is already taken ", webController.register(user, model));
+		assertEquals("email is already taken ", webController.register(user));
 	}
 	
 	@Test
@@ -184,5 +184,10 @@ public class WebControllerTest {
 	@Test
 	public void addPostTest() {
 		assertEquals("hello2", webController.addPost("AAA", model));
+	}
+	
+	@Test
+	public void getHello2PageTest() {
+		assertEquals("hello2", webController.getHello2Page(model));
 	}
 }

@@ -1,13 +1,13 @@
-package package1.databaseStaffs;
+package spring.facebook.databaseStaffs;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import package1.entities.Comment;
-import package1.entities.FacebookPost;
-import package1.entities.User;
+import spring.facebook.entities.Comment;
+import spring.facebook.entities.FacebookPost;
+import spring.facebook.entities.User;
 
 @Component
 public class DatabaseIO {
@@ -61,8 +61,8 @@ public class DatabaseIO {
 		commentRepository.save(comment);
 	}
 	
-	public Comment getCommentFromDatabase(String Id) {
-		return commentRepository.findByCommentId(Id);
+	public Comment getCommentFromDatabase(String id) {
+		return commentRepository.findByCommentId(id);
 	}
 	
 	public void deleteComment(long commentId) {

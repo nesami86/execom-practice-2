@@ -1,11 +1,11 @@
-package package1.databaseStaffs;
+package spring.facebook.databaseStaffs;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
-import package1.entities.User;
+import spring.facebook.entities.User;
 
 @Component
 public interface UserRepository extends CrudRepository<User, Long> {
@@ -14,5 +14,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
 	
 	User findByFacebookId(String facebookId);
 	
+	@Override
 	List<User> findAll();
 }

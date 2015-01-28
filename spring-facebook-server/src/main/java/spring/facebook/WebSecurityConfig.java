@@ -1,4 +1,4 @@
-package package1;
+package spring.facebook;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -8,8 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 
-import package1.databaseStaffs.UserRepository;
-import package1.utils.UserDetailsServiceImpl;
+import spring.facebook.utils.UserDetailsServiceImpl;
 
 /**
  * Intercepts users calls and filters them accordingly
@@ -17,10 +16,7 @@ import package1.utils.UserDetailsServiceImpl;
 @Configuration
 @EnableWebMvcSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	
-	@Autowired
-	private UserRepository userRepository;
-	
+		
 	@Autowired
     private UserDetailsServiceImpl userDetailsService;
 		

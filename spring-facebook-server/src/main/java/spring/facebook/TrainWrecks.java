@@ -1,4 +1,4 @@
-package package1;
+package spring.facebook;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

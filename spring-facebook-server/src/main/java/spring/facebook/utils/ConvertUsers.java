@@ -1,4 +1,4 @@
-package package1.utils;
+package spring.facebook.utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,7 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import package1.entities.User;
+import spring.facebook.entities.User;
 
 /**
  * Translates users from entities to spring security users

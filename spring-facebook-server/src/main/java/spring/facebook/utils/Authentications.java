@@ -15,56 +15,56 @@ import spring.facebook.entities.User;
 @Component
 public class Authentications extends TrainWrecks {
 
-	@Autowired
+    @Autowired
     private UserDetailsServiceImpl userDetailsService;
-	
-	@Autowired
-	private ConnectionRepository connectionRepository;
-	
-	@Autowired
-	private ConvertUsers convertUsers;
-	
-	@Autowired
-	private WorksWithEntities worksWithEntities;
-	
-	@Autowired
-	private DatabaseIO databaseIO;
-		
-	public void authenticateUser(User user) {
-		UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
-		createUsersToken(userDetails);
-	}
-	
-	public void createUsersToken(UserDetails userDetails) {
-		Authentication authentication = getNewToken(userDetails);
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-	}
-	
-	public void deauthenticateUser() {
-		destroyFacebookConnection();
-		SecurityContextHolder.clearContext();
-	}
-	
-	public void destroyFacebookConnection() {
-		if (!connectionRepository.findConnections(Facebook.class).isEmpty()) {
-			connectionRepository.removeConnections(getFacebookConnectionId());
-		}
-	}
-	
-	public void authenticateFacebookUser(Facebook facebook) {
-		User user = databaseIO.getUserFromDbByFacebookId(facebook.userOperations().getUserProfile().getId());
-		if (user == null) {
-			user = worksWithEntities.createUserFromFacebookUser(facebook);
-		}	
-		
-		UserDetails userDetails = convertUsers.convertUser(user);
-		
-		/**
-		 * 	because a new session is created after authentication we had to 
-		 * 	terminate facebook connection first but we can still get data from database
-		 */
-		destroyFacebookConnection();
-		
-		createUsersToken(userDetails);
-	}
+    
+    @Autowired
+    private ConnectionRepository connectionRepository;
+    
+    @Autowired
+    private ConvertUsers convertUsers;
+    
+    @Autowired
+    private WorksWithEntities worksWithEntities;
+    
+    @Autowired
+    private DatabaseIO databaseIO;
+        
+    public void authenticateUser(User user) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
+        createUsersToken(userDetails);
+    }
+    
+    public void createUsersToken(UserDetails userDetails) {
+        Authentication authentication = getNewToken(userDetails);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+    }
+    
+    public void deauthenticateUser() {
+        destroyFacebookConnection();
+        SecurityContextHolder.clearContext();
+    }
+    
+    public void destroyFacebookConnection() {
+        if (!connectionRepository.findConnections(Facebook.class).isEmpty()) {
+            connectionRepository.removeConnections(getFacebookConnectionId());
+        }
+    }
+    
+    public void authenticateFacebookUser(Facebook facebook) {
+        User user = databaseIO.getUserFromDbByFacebookId(facebook.userOperations().getUserProfile().getId());
+        if (user == null) {
+            user = worksWithEntities.createUserFromFacebookUser(facebook);
+        }    
+        
+        UserDetails userDetails = convertUsers.convertUser(user);
+        
+        /**
+         *     because a new session is created after authentication we had to 
+         *     terminate facebook connection first but we can still get data from database
+         */
+        destroyFacebookConnection();
+        
+        createUsersToken(userDetails);
+    }
 }

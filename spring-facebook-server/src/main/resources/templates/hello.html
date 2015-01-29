@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <title>Hello Facebook</title>
 </head>
 <body>
-	<h3>
-		Hello, <span th:text="${ facebookProfile.name }"></span> (<span th:text="${ facebookProfile.id }"></span>)!
-	</h3>
+    <h3>
+        Hello, <span th:text="${ facebookProfile.name }"></span> (<span th:text="${ facebookProfile.id }"></span>)!
+    </h3>
 
-	<h4>Here is your home feed:</h4>
+    <h4>Here is your home feed:</h4>
 
-	<div th:each="post:${ feed }">
-		<p>
-			<span><b th:text="${ post.from.name }"></b></span> on <span th:text="${ post.createdTime }"></span> wrote:
-		</p>
-		<p th:text="${ post.message }"></p>
-		<img th:if="${ post.picture }" th:src="${ post.picture }" /><br/>
-		Comments:
-		<div th:each="comment:${ post.comments }">
-			<div class="comment">
-				<p>
-					&nbsp; &nbsp; &nbsp; &nbsp;<b><span th:text="${ comment.from.name }"></span></b>
-					 on <span th:text="${ comment.createdTime }"></span>
-				</p>
-				<p>
-					&nbsp; &nbsp; &nbsp; &nbsp;<span th:text="${ comment.message }"></span>
-				</p>
-			</div>
-		</div>
-		<hr />
-	</div>
+    <div th:each="post:${ feed }">
+        <p>
+            <span><b th:text="${ post.from.name }"></b></span> on <span th:text="${ post.createdTime }"></span> wrote:
+        </p>
+        <p th:text="${ post.message }"></p>
+        <img th:if="${ post.picture }" th:src="${ post.picture }" /><br/>
+        Comments:
+        <div th:each="comment:${ post.comments }">
+            <div class="comment">
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp;<b><span th:text="${ comment.from.name }"></span></b>
+                     on <span th:text="${ comment.createdTime }"></span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp;<span th:text="${ comment.message }"></span>
+                </p>
+            </div>
+        </div>
+        <hr />
+    </div>
 
-	<form action="/protectedPage" method="GET">
-		<button type="submit">Protected page</button>
-	</form>
+    <form action="/protectedPage" method="GET">
+        <button type="submit">Protected page</button>
+    </form>
 
-	<br />
+    <br />
 
-	<form action="/signout" method="GET">
-		<button type="submit">Log Out</button>
-	</form>
+    <form action="/signout" method="GET">
+        <button type="submit">Log Out</button>
+    </form>
 
 </body>
 </html>

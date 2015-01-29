@@ -28,63 +28,63 @@ import static org.mockito.Mockito.when;
 @ContextConfiguration(classes = {TestBeans.class, UserDetailsServiceImplTest.TestConfig.class})
 public class UserDetailsServiceImplTest {
 
-	@Configuration
-	static class TestConfig {
-				
-		@Bean
-		public UserDetailsServiceImpl getUserDetailsServiceImplInstance() {
-			return new UserDetailsServiceImpl();
-		}
-		
-		@Bean
-		public DatabaseIO getDatabaseIOMock() {
-			return mock(DatabaseIO.class);
-		}
-		
-		@Bean
-		public FillingContentOnThePage getFillingContentOnThePageMock() {
-			return mock(FillingContentOnThePage.class);
-		}
-		
-		@Bean
-		public Checks getChecksMock() {
-			return mock(Checks.class);
-		}
-		
-		@Bean
-		public Authentications getAuthenticationsMock() {
-			return mock(Authentications.class);
-		}
-		
-		@Bean
-		public WorksWithEntities getWorksWithEntitiesMock() {
-			return mock(WorksWithEntities.class);
-		}
-	}
-	
-	@Autowired
-	private UserDetailsServiceImpl userDetailsServiceImpl;
-	
-	@Autowired
-	private ConvertUsers convertUsers;
-	
-	@Autowired
-	private UserRepository userRepository;
-	
-	@Autowired
-	private User user;
-	
-	@Test
-	public void loadUserByUsernameTest1() {
-		when(userRepository.findByEmail(anyString())).thenReturn(user);
-		userDetailsServiceImpl.loadUserByUsername(anyString());
-		
-		verify(convertUsers).convertUser(user);
-	}
-	
-	@Test(expected=UsernameNotFoundException.class)
-	public void loadUserByUsernameTest2() {
-		when(userRepository.findByEmail(anyString())).thenReturn(null);
-		userDetailsServiceImpl.loadUserByUsername(anyString());
-	}
+    @Configuration
+    static class TestConfig {
+                
+        @Bean
+        public UserDetailsServiceImpl getUserDetailsServiceImplInstance() {
+            return new UserDetailsServiceImpl();
+        }
+        
+        @Bean
+        public DatabaseIO getDatabaseIOMock() {
+            return mock(DatabaseIO.class);
+        }
+        
+        @Bean
+        public FillingContentOnThePage getFillingContentOnThePageMock() {
+            return mock(FillingContentOnThePage.class);
+        }
+        
+        @Bean
+        public Checks getChecksMock() {
+            return mock(Checks.class);
+        }
+        
+        @Bean
+        public Authentications getAuthenticationsMock() {
+            return mock(Authentications.class);
+        }
+        
+        @Bean
+        public WorksWithEntities getWorksWithEntitiesMock() {
+            return mock(WorksWithEntities.class);
+        }
+    }
+    
+    @Autowired
+    private UserDetailsServiceImpl userDetailsServiceImpl;
+    
+    @Autowired
+    private ConvertUsers convertUsers;
+    
+    @Autowired
+    private UserRepository userRepository;
+    
+    @Autowired
+    private User user;
+    
+    @Test
+    public void loadUserByUsernameTest1() {
+        when(userRepository.findByEmail(anyString())).thenReturn(user);
+        userDetailsServiceImpl.loadUserByUsername(anyString());
+        
+        verify(convertUsers).convertUser(user);
+    }
+    
+    @Test(expected=UsernameNotFoundException.class)
+    public void loadUserByUsernameTest2() {
+        when(userRepository.findByEmail(anyString())).thenReturn(null);
+        userDetailsServiceImpl.loadUserByUsername(anyString());
+    }
 }

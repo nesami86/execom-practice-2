@@ -1,88 +1,88 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <title>Hello Facebook</title>
 </head>
 <body>
-	<h3>
-		Hello, <span th:text="${ user.firstName }"></span> (<span th:text="${ user.facebookId }"></span>)!
-	</h3>
+    <h3>
+        Hello, <span th:text="${ user.firstName }"></span> (<span th:text="${ user.facebookId }"></span>)!
+    </h3>
 
-	<h4>Here is your home feed:</h4>
+    <h4>Here is your home feed:</h4>
 
-	<div th:each="post:${ user.facebookHomePagePosts }">
-		<p>
-			<span><b th:text="${ post.authorsName }"></b></span> on <span th:text="${ post.dateCreated }"></span> wrote:
-		</p>
-		<p th:text="${ post.text }"></p>
-		<img th:if="${ post.imageUrl }" th:src="${ post.imageUrl }" /><br /> Comments:
-		<div th:each="comment:${ post.comments }">
-			<div class="comment">
-				<p>
-					&nbsp; &nbsp; &nbsp; &nbsp;<b><span th:text="${ comment.authorsName }"></span></b>
-					 on <span th:text="${ comment.dateCreated }"></span>
-				</p>
-				<p>
-					&nbsp; &nbsp; &nbsp; &nbsp;<span th:text="${ comment.text }"></span>
-				</p>
-				<form action="/deleteComment" method="POST">
-					<input type="text" name="commentId" th:value="${ comment.commentId }" style="display: none;" />
-					&nbsp; &nbsp; &nbsp; &nbsp;<button type="submit">Delete comment</button>
-				</form>
-			</div>
-		</div>
-		
-		<br /><br />
-		
-		<form action="/addComment" method="POST">
-			<input type="text" name="postId" th:value="${ post.facebookPostId }" style="display: none;" />
-			&nbsp; &nbsp; &nbsp; &nbsp;<input type="text" name="text" placeHolder="Add comment ..." />
-			<button type="submit">Add</button>
-		</form>
-		
-		<br />
-		
-		<form action="/removePost" method="POST">
-			<input type="text" name="postId" th:value="${ post.facebookPostId }" style="display: none;" />
-			<button type="submit">Remove post</button>
-		</form>
-		
-		<br />
-		
-		<form action="/deletePost" method="POST">
-			<input type="text" name="postId" th:value="${ post.facebookPostId }" style="display: none;" />
-			<button type="submit">Delete post</button>
-		</form>
-		
-		<hr />
-	</div>
+    <div th:each="post:${ user.facebookHomePagePosts }">
+        <p>
+            <span><b th:text="${ post.authorsName }"></b></span> on <span th:text="${ post.dateCreated }"></span> wrote:
+        </p>
+        <p th:text="${ post.text }"></p>
+        <img th:if="${ post.imageUrl }" th:src="${ post.imageUrl }" /><br /> Comments:
+        <div th:each="comment:${ post.comments }">
+            <div class="comment">
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp;<b><span th:text="${ comment.authorsName }"></span></b>
+                     on <span th:text="${ comment.dateCreated }"></span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp;<span th:text="${ comment.text }"></span>
+                </p>
+                <form action="/deleteComment" method="POST">
+                    <input type="text" name="commentId" th:value="${ comment.commentId }" style="display: none;" />
+                    &nbsp; &nbsp; &nbsp; &nbsp;<button type="submit">Delete comment</button>
+                </form>
+            </div>
+        </div>
+        
+        <br /><br />
+        
+        <form action="/addComment" method="POST">
+            <input type="text" name="postId" th:value="${ post.facebookPostId }" style="display: none;" />
+            &nbsp; &nbsp; &nbsp; &nbsp;<input type="text" name="text" placeHolder="Add comment ..." />
+            <button type="submit">Add</button>
+        </form>
+        
+        <br />
+        
+        <form action="/removePost" method="POST">
+            <input type="text" name="postId" th:value="${ post.facebookPostId }" style="display: none;" />
+            <button type="submit">Remove post</button>
+        </form>
+        
+        <br />
+        
+        <form action="/deletePost" method="POST">
+            <input type="text" name="postId" th:value="${ post.facebookPostId }" style="display: none;" />
+            <button type="submit">Delete post</button>
+        </form>
+        
+        <hr />
+    </div>
 
-	<form action="/profile" method="GET" id="profile" style="display: none">
-		<button type="submit">Profile</button>
-	</form>
+    <form action="/profile" method="GET" id="profile" style="display: none">
+        <button type="submit">Profile</button>
+    </form>
 
-	<br />
+    <br />
 
-	<form action="/protectedPage" method="GET">
-		<button type="submit">Protected page</button>
-	</form>
+    <form action="/protectedPage" method="GET">
+        <button type="submit">Protected page</button>
+    </form>
 
-	<br />
+    <br />
 
-	<form action="/signout" method="GET">
-		<button type="submit">Log Out</button>
-	</form>
+    <form action="/signout" method="GET">
+        <button type="submit">Log Out</button>
+    </form>
 
-	<span th:text="${ user.email }" id="email" style="display: none;"></span>
+    <span th:text="${ user.email }" id="email" style="display: none;"></span>
 
-	<script type="text/javascript">
-		var email = document.getElementById("email").innerHTML;
+    <script type="text/javascript">
+        var email = document.getElementById("email").innerHTML;
 
-		if (email.indexOf("@") > -1) {
-			document.getElementById("profile").style.display = "block";
-		}
-	</script>
+        if (email.indexOf("@") > -1) {
+            document.getElementById("profile").style.display = "block";
+        }
+    </script>
 
 </body>
 </html>

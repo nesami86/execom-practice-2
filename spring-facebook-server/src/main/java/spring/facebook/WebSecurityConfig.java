@@ -16,14 +16,14 @@ import spring.facebook.utils.UserDetailsServiceImpl;
 @Configuration
 @EnableWebMvcSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-		
-	@Autowired
+        
+    @Autowired
     private UserDetailsServiceImpl userDetailsService;
-		
+        
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        	.csrf().disable()
+            .csrf().disable()
             .authorizeRequests()
                 .antMatchers("/", "/signout", "/registerForm", "/register", "/connect/facebook").permitAll()
                 .anyRequest().authenticated()

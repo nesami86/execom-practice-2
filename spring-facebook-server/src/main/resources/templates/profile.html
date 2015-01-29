@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-	<head>
-		<title>Profile</title>
-	</head>
-	<body>
-		<h3>Welcome <span th:text="${ user.firstName }"></span></h3>
-				
-		<table>
-			<tr><th colspan="2">Your data:</th></tr>
-			<tr><td>First name:</td><td th:text="${ user.firstName }"></td></tr>
-			<tr><td>Last name:</td><td th:text="${ user.lastName }"></td></tr>
-			<tr><td>E-mail:</td><td th:text="${ user.email }"></td></tr>
-		</table>		
-		
-		<br />
-		
-		<form action="/addPost" method="POST">
-			<input type="text" name="text" placeHolder="Write something ..." /> <button type="submit">Add post</button>
-		</form>
-		
-		<br />
-		
-		<form action="/connect/facebook" method="POST">
-			<button type="submit">Synchronize with facebook</button>
-		</form>
-		
-		<br />
-		
-		<div th:if="${ user.facebookId != null }">
-			<form action="/facebookHome" method="GET">
-				<button type="submit">Facebook home</button>
-			</form>
-			
-			<br />
-		</div>
-		
-		<form action="/protectedPage" method="GET">
-			<button type="submit">Protected page</button>
-		</form>
-		
-		<br />
-				
-		<form action="/logout" method="GET">
-			<button type="submit">Log Out</button>
-		</form>
-						
-	</body>
+    <head>
+        <title>Profile</title>
+    </head>
+    <body>
+        <h3>Welcome <span th:text="${ user.firstName }"></span></h3>
+                
+        <table>
+            <tr><th colspan="2">Your data:</th></tr>
+            <tr><td>First name:</td><td th:text="${ user.firstName }"></td></tr>
+            <tr><td>Last name:</td><td th:text="${ user.lastName }"></td></tr>
+            <tr><td>E-mail:</td><td th:text="${ user.email }"></td></tr>
+        </table>        
+        
+        <br />
+        
+        <form action="/addPost" method="POST">
+            <input type="text" name="text" placeHolder="Write something ..." /> <button type="submit">Add post</button>
+        </form>
+        
+        <br />
+        
+        <form action="/connect/facebook" method="POST">
+            <button type="submit">Synchronize with facebook</button>
+        </form>
+        
+        <br />
+        
+        <div th:if="${ user.facebookId != null }">
+            <form action="/facebookHome" method="GET">
+                <button type="submit">Facebook home</button>
+            </form>
+            
+            <br />
+        </div>
+        
+        <form action="/protectedPage" method="GET">
+            <button type="submit">Protected page</button>
+        </form>
+        
+        <br />
+                
+        <form action="/logout" method="GET">
+            <button type="submit">Log Out</button>
+        </form>
+                        
+    </body>
 </html>

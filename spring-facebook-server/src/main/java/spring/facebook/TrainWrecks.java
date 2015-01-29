@@ -12,18 +12,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class TrainWrecks {
 
-	@Autowired
-	private ConnectionRepository connectionRepository;
-	
-	public String getAuthenticatedUsersName() {
-		return SecurityContextHolder.getContext().getAuthentication().getName();
-	}
-	
-	public String getFacebookConnectionId() {
-		return connectionRepository.findPrimaryConnection(Facebook.class).getKey().getProviderId();
-	}
-	
-	public Authentication getNewToken(UserDetails userDetails) {
-		return new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
-	}
+    @Autowired
+    private ConnectionRepository connectionRepository;
+    
+    public String getAuthenticatedUsersName() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+    }
+    
+    public String getFacebookConnectionId() {
+        return connectionRepository.findPrimaryConnection(Facebook.class).getKey().getProviderId();
+    }
+    
+    public Authentication getNewToken(UserDetails userDetails) {
+        return new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
+    }
 }

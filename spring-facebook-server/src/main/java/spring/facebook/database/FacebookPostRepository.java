@@ -7,8 +7,8 @@ import spring.facebook.entities.FacebookPost;
 
 @Component
 public interface FacebookPostRepository extends CrudRepository<FacebookPost, Long> {
-	
-	FacebookPost findByRealFacebookId(String realFacebookId);
-	
-	FacebookPost findByFacebookPostId(long facebookPostId);
+    
+    FacebookPost findByRealFacebookId(String realFacebookId);
+    
+    FacebookPost findByFacebookPostId(long facebookPostId);
 }

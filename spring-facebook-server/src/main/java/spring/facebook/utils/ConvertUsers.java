@@ -16,14 +16,14 @@ import spring.facebook.entities.User;
 @Component
 public class ConvertUsers {
 
-	@Transactional(readOnly = true)
-	public org.springframework.security.core.userdetails.User convertUser(User user) {
-		String username = user.getEmail();
-		String password = user.getPassword();
+    @Transactional(readOnly = true)
+    public org.springframework.security.core.userdetails.User convertUser(User user) {
+        String username = user.getEmail();
+        String password = user.getPassword();
 
-		Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		authorities.add(new SimpleGrantedAuthority("user"));
+        Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+        authorities.add(new SimpleGrantedAuthority("user"));
 
-		return new org.springframework.security.core.userdetails.User(username, password, authorities);
-	}
+        return new org.springframework.security.core.userdetails.User(username, password, authorities);
+    }
 }

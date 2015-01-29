@@ -8,5 +8,5 @@ import spring.facebook.entities.Comment;
 @Component
 public interface CommentRepository extends CrudRepository<Comment, Long> {
 
-	Comment findByCommentId(String commentId);
+    Comment findByCommentId(String commentId);
 }

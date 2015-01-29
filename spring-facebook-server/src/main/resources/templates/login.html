@@ -2,36 +2,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
-		<title>Log In</title>
-	</head>
-	<body>
-	
-		<div th:if="${ param.logout == null }">
-			<h3 th:if="${ param.error }" style="color: red;">Invalid username and/or password!</h3>
-			<h3 th:if="${ param.error == null }">Enter valid e-mail and password</h3>
-	
-			<form action="/login" method="post">
-				<table>
-					<tr><td><input type="email" name="username" placeholder="E-mail" autofocus="autofocus" /></td></tr>
-					<tr><td><input type="password" name="password" placeholder="Password" /></td></tr>
-					<tr><td><button type="submit">Log In</button></td></tr>
-				</table>		
-			</form>
-		
-			<br/>
-				
-			<form action="/" method="GET">
-				<button type="submit">Back</button>
-			</form>
-		</div>
-	
-		<form action="/" method="GET" style="display: none;">
-			<button id="invisibleBack" type="submit">Back</button>
-		</form>
-	
-		<script type="text/javascript" th:if="${ param.logout }">
+        <title>Log In</title>
+    </head>
+    <body>
+    
+        <div th:if="${ param.logout == null }">
+            <h3 th:if="${ param.error }" style="color: red;">Invalid username and/or password!</h3>
+            <h3 th:if="${ param.error == null }">Enter valid e-mail and password</h3>
+    
+            <form action="/login" method="post">
+                <table>
+                    <tr><td><input type="email" name="username" placeholder="E-mail" autofocus="autofocus" /></td></tr>
+                    <tr><td><input type="password" name="password" placeholder="Password" /></td></tr>
+                    <tr><td><button type="submit">Log In</button></td></tr>
+                </table>        
+            </form>
+        
+            <br/>
+                
+            <form action="/" method="GET">
+                <button type="submit">Back</button>
+            </form>
+        </div>
+    
+        <form action="/" method="GET" style="display: none;">
+            <button id="invisibleBack" type="submit">Back</button>
+        </form>
+    
+        <script type="text/javascript" th:if="${ param.logout }">
             document.getElementById("invisibleBack").click();
         </script>
-        						
-	</body>
+                                
+    </body>
 </html>

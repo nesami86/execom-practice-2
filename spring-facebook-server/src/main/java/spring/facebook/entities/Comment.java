@@ -24,9 +24,9 @@ public class Comment {
     @JoinColumn(name="facebook_post_id")
     private FacebookPost facebookPost;
     
-    private String authorsName;
-    private Date dateCreated;
-    private String text;
+    private String commAuthorsName;
+    private Date commDateCreated;
+    private String commText;
     
     public Comment() {
         
@@ -48,27 +48,27 @@ public class Comment {
         this.facebookPost = facebookPost;
     }
 
-    public String getAuthorsName() {
-        return authorsName;
+    public String getCommAuthorsName() {
+        return commAuthorsName;
     }
 
-    public void setAuthorsName(String authorsName) {
-        this.authorsName = authorsName;
+    public void setCommAuthorsName(String commAuthorsName) {
+        this.commAuthorsName = commAuthorsName;
     }
 
-    public Date getDateCreated() {
-        return dateCreated;
+    public Date getCommDateCreated() {
+        return commDateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setCommDateCreated(Date commDateCreated) {
+        this.commDateCreated = commDateCreated;
     }
 
-    public String getText() {
-        return text;
+    public String getCommText() {
+        return commText;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setCommText(String commText) {
+        this.commText = commText;
     }
 }

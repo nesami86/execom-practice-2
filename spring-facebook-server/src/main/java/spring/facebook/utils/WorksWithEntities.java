@@ -119,9 +119,9 @@ public class WorksWithEntities {
         for (Comment comment : post.getComments()) {
             spring.facebook.entities.Comment comm = new spring.facebook.entities.Comment();
             comm.setFacebookPost(facebookPost);
-            comm.setAuthorsName(comment.getFrom().getName());
-            comm.setDateCreated(comment.getCreatedTime());
-            comm.setText(comment.getMessage());
+            comm.setCommAuthorsName(comment.getFrom().getName());
+            comm.setCommDateCreated(comment.getCreatedTime());
+            comm.setCommText(comment.getMessage());
             
             comments.add(comm);
         }
@@ -148,10 +148,10 @@ public class WorksWithEntities {
     
     public spring.facebook.entities.Comment createComment(String text, FacebookPost post, User user) {
         spring.facebook.entities.Comment comment = new spring.facebook.entities.Comment();
-        comment.setText(text);
+        comment.setCommText(text);
         comment.setFacebookPost(post);
-        comment.setDateCreated(Calendar.getInstance().getTime());
-        comment.setAuthorsName(user.getFirstName() + " " + user.getLastName());
+        comment.setCommDateCreated(Calendar.getInstance().getTime());
+        comment.setCommAuthorsName(user.getFirstName() + " " + user.getLastName());
         return comment;
     }
     

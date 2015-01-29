@@ -34,7 +34,7 @@ public class FacebookPost {
     private String imageUrl;
     
     @OneToMany(mappedBy="facebookPost", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-    @OrderBy("date_created ASC")
+    @OrderBy("comm_date_created ASC")
     private List<Comment> comments;
     
     public FacebookPost() {

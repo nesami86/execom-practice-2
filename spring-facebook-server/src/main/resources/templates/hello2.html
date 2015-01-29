@@ -20,11 +20,11 @@
         <div th:each="comment:${ post.comments }">
             <div class="comment">
                 <p>
-                    &nbsp; &nbsp; &nbsp; &nbsp;<b><span th:text="${ comment.authorsName }"></span></b>
-                     on <span th:text="${ comment.dateCreated }"></span>
+                    &nbsp; &nbsp; &nbsp; &nbsp;<b><span th:text="${ comment.commAuthorsName }"></span></b>
+                     on <span th:text="${ comment.commDateCreated }"></span>
                 </p>
                 <p>
-                    &nbsp; &nbsp; &nbsp; &nbsp;<span th:text="${ comment.text }"></span>
+                    &nbsp; &nbsp; &nbsp; &nbsp;<span th:text="${ comment.commText }"></span>
                 </p>
                 <form action="/deleteComment" method="POST">
                     <input type="text" name="commentId" th:value="${ comment.commentId }" style="display: none;" />

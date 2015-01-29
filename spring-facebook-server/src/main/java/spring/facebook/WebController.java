@@ -18,7 +18,7 @@ import spring.facebook.utils.WorksWithEntities;
 
 @Controller
 @RequestMapping("/")
-public class WebController extends TrainWrecks {
+public class WebController extends WebControllerAddMethods {
 
     @Autowired
     private Facebook facebook;
@@ -50,7 +50,7 @@ public class WebController extends TrainWrecks {
         }
         return "redirect:/connect/facebook";
     }
-    
+        
     @RequestMapping("/login")
     public String getLoginForm() {
         return "login";
@@ -117,10 +117,5 @@ public class WebController extends TrainWrecks {
     public String addPost(@RequestParam("text") String text, Model model) {
         worksWithEntities.createPost(text, getAuthenticatedUsersName());
         return getHello2Page(model);
-    }
-    
-    public String getHello2Page(Model model) {
-        fillingContentOnThePage.fillFacebookHomePageFromDatabase(model, getAuthenticatedUsersName());
-        return "hello2";
     }
 }

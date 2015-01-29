@@ -118,7 +118,7 @@ public class WebControllerTest {
         when(checks.isFacebookAuthorized(facebook)).thenReturn(false);
         assertEquals("redirect:/connect/facebook", webController.initialPageSelector(model));
     }
-    
+        
     @Test
     public void getLoginFormTest() {
         assertEquals("login", webController.getLoginForm());

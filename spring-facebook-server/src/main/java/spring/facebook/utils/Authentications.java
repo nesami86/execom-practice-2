@@ -1,6 +1,7 @@
 package spring.facebook.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,12 +9,11 @@ import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.stereotype.Component;
 
-import spring.facebook.TrainWrecks;
 import spring.facebook.database.DatabaseIO;
 import spring.facebook.entities.User;
 
 @Component
-public class Authentications extends TrainWrecks {
+public class Authentications {
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
@@ -40,6 +40,10 @@ public class Authentications extends TrainWrecks {
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
     
+    public Authentication getNewToken(UserDetails userDetails) {
+        return new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
+    }
+    
     public void deauthenticateUser() {
         destroyFacebookConnection();
         SecurityContextHolder.clearContext();
@@ -49,6 +53,10 @@ public class Authentications extends TrainWrecks {
         if (!connectionRepository.findConnections(Facebook.class).isEmpty()) {
             connectionRepository.removeConnections(getFacebookConnectionId());
         }
+    }
+    
+    public String getFacebookConnectionId() {
+        return connectionRepository.findPrimaryConnection(Facebook.class).getKey().getProviderId();
     }
     
     public void authenticateFacebookUser(Facebook facebook) {

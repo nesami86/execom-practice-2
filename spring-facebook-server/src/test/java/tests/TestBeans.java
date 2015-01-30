@@ -7,6 +7,7 @@ import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.FacebookProfile;
 import org.springframework.social.facebook.api.FeedOperations;
 import org.springframework.social.facebook.api.Post;
+import org.springframework.social.facebook.api.Reference;
 import org.springframework.social.facebook.api.UserOperations;
 import org.springframework.ui.Model;
 
@@ -96,5 +97,10 @@ public class TestBeans {
     @Bean
     public Post getPostMock() {
         return mock(Post.class);
+    }
+    
+    @Bean
+    public Reference getReferenceMock() {
+        return mock(Reference.class);
     }
 }

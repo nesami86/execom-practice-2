@@ -3,6 +3,7 @@ package spring.facebook.entities;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -33,6 +34,7 @@ public class User {
     @JoinTable(name="users_facebook_posts", 
         joinColumns={ @JoinColumn(name="user_id") }, inverseJoinColumns={ @JoinColumn(name="facebook_post_id") })
     @OrderBy("date_created DESC")
+    @Column(nullable=false)
     private List<FacebookPost> facebookHomePagePosts;
         
     public User() {

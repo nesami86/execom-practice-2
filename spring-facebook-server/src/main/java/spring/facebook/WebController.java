@@ -115,7 +115,7 @@ public class WebController extends WebControllerAddMethods {
     
     @RequestMapping("/addPost")
     public String addPost(@RequestParam("text") String text, Model model) {
-        worksWithEntities.createPost(text, getAuthenticatedUsersName());
+        worksWithEntities.createLocalPost(text, getAuthenticatedUsersName());
         return getHello2Page(model);
     }
 }

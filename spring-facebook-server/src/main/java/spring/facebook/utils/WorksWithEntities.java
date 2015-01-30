@@ -63,7 +63,7 @@ public class WorksWithEntities {
     }
     
     public List<FacebookPost> getFacebookUsersHomePagePosts(Facebook facebook, User user) {
-        List<FacebookPost> posts = new ArrayList<FacebookPost>();
+        List<FacebookPost> posts = user.getFacebookHomePagePosts();
         
         for (Post post : facebook.feedOperations().getHomeFeed()) {
             FacebookPost facebookPost = databaseIO.getPostFromDatabaseByFacebookId(post.getId().split("_")[1]);
@@ -172,11 +172,12 @@ public class WorksWithEntities {
         databaseIO.deletePost(postId);
     }
     
-    public void createPost(String text, String username) {
+    public void createLocalPost(String text, String username) {
         List<User> allUsers = databaseIO.getAllUsersFromDatabase();
         User user = findUserInList(allUsers, username);
         
         FacebookPost post = new FacebookPost();
+        post.setRealFacebookId("");
         post.setAuthorsName(user.getFirstName() + " " + user.getLastName());
         post.setDateCreated(Calendar.getInstance().getTime());
         post.setText(text);

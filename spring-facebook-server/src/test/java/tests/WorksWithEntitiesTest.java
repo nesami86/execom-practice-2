@@ -11,7 +11,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.FacebookProfile;
+import org.springframework.social.facebook.api.FeedOperations;
 import org.springframework.social.facebook.api.Post;
+import org.springframework.social.facebook.api.Reference;
 import org.springframework.social.facebook.api.UserOperations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -25,9 +27,11 @@ import spring.facebook.utils.Checks;
 import spring.facebook.utils.UserDetailsServiceImpl;
 import spring.facebook.utils.WorksWithEntities;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -77,6 +81,9 @@ public class WorksWithEntitiesTest {
     private Facebook facebook;
     
     @Autowired
+    private FeedOperations feedOperations;
+    
+    @Autowired
     private UserOperations userOperations;
     
     @Autowired
@@ -100,6 +107,9 @@ public class WorksWithEntitiesTest {
     @Autowired
     private Comment comment;
     
+    @Autowired
+    private Reference reference;
+    
     @Before
     public void setUp() {
         reset(databaseIO);
@@ -120,6 +130,15 @@ public class WorksWithEntitiesTest {
         when(facebookProfile.getName()).thenReturn("AAA");
         
         assertEquals("AAA", worksWithEntities.getFacebookProfileName(facebook));
+    }
+        
+    @Test
+    public void createFacebookPostTest() {
+        when(post.getId()).thenReturn("AA_AA");
+        when(post.getFrom()).thenReturn(reference);
+        when(reference.getName()).thenReturn("AAA");
+        
+        assertEquals("AA", worksWithEntities.createFacebookPost(post, user).getRealFacebookId());
     }
     
     @Test
@@ -191,7 +210,12 @@ public class WorksWithEntitiesTest {
         
         verify(databaseIO).saveCommentToDatabase(comment);
     }
-            
+    
+    @Test
+    public void createCommentTest() {   
+        assertEquals("AAA", worksWithEntities.createComment("AAA", facebookPost, user).getCommText());
+    }
+    
     @Test
     public void removePostFromUsersHomePageTest() {
         when(databaseIO.getUserFromDbByEmail(anyString())).thenReturn(user);
@@ -213,6 +237,34 @@ public class WorksWithEntitiesTest {
         
         verify(user, times(3)).removePostWithGivenId(1);
         verify(databaseIO).deletePost(1);
+    }
+    
+    @Test
+    public void createLocalPostTest() {
+        WorksWithEntities spy = spy(worksWithEntities);
+        List<User> users = new ArrayList<User>();
+        
+        when(spy.findUserInList(users, "Username")).thenReturn(user);
+        when(user.getFirstName()).thenReturn("First name");
+        when(user.getLastName()).thenReturn("Last name");
+        spy.createLocalPost("AAA", "Username");
+        
+        verify(spy).addPostToAllUsers(eq(users), any(FacebookPost.class));
+    }
+    
+    @Test
+    public void findUserInListTest1() {
+        List<User> users = new ArrayList<User>();
+        assertEquals(null, worksWithEntities.findUserInList(users, "AAA"));
+    }
+    
+    @Test
+    public void findUserInListTest2() {
+        List<User> users = new ArrayList<User>();
+        users.add(user);
+        when(user.getEmail()).thenReturn("AAA");
+        
+        assertEquals(user, worksWithEntities.findUserInList(users, "AAA"));
     }
     
     @Test

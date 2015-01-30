@@ -19,6 +19,7 @@ import spring.facebook.database.DatabaseIO;
 import spring.facebook.entities.User;
 import spring.facebook.utils.Authentications;
 import spring.facebook.utils.Checks;
+import spring.facebook.utils.ConvertUsers;
 import spring.facebook.utils.FillingContentOnThePage;
 import spring.facebook.utils.UserDetailsServiceImpl;
 import spring.facebook.utils.WorksWithEntities;
@@ -53,6 +54,11 @@ public class WebControllerTest {
         @Bean
         public Authentications getAuthenticationsMock() {
             return mock(Authentications.class);
+        }
+        
+        @Bean
+        public ConvertUsers getConvertUsersMock() {
+            return mock(ConvertUsers.class);
         }
         
         @Bean

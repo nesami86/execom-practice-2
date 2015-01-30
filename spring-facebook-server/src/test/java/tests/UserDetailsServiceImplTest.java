@@ -57,6 +57,11 @@ public class UserDetailsServiceImplTest {
         }
         
         @Bean
+        public ConvertUsers getConvertUsersMock() {
+            return mock(ConvertUsers.class);
+        }
+        
+        @Bean
         public WorksWithEntities getWorksWithEntitiesMock() {
             return mock(WorksWithEntities.class);
         }

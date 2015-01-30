@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.FacebookProfile;
 import org.springframework.social.facebook.api.UserOperations;
@@ -36,6 +37,11 @@ public class AuthenticationsTest {
         @Bean
         public Authentications getAuthenticationInstance() {
             return new Authentications();
+        }
+        
+        @Bean
+        public ConvertUsers getConvertUsersMock() {
+            return mock(ConvertUsers.class);
         }
         
         @Bean
@@ -88,6 +94,9 @@ public class AuthenticationsTest {
     
     @Autowired
     private UserOperations userOperations;
+    
+    @Autowired
+    private ConnectionRepository connectionRepository;
         
     @Test
     public void authenticateUserTest() {
@@ -107,7 +116,7 @@ public class AuthenticationsTest {
         
         verify(spy).destroyFacebookConnection();
     }
-        
+            
     @Test
     public void authenticateFacebookUserTest1() {
         Authentications spy = spy(authentications);

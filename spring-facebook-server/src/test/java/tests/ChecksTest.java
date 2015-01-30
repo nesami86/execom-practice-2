@@ -13,6 +13,7 @@ import spring.facebook.database.DatabaseIO;
 import spring.facebook.entities.User;
 import spring.facebook.utils.Authentications;
 import spring.facebook.utils.Checks;
+import spring.facebook.utils.ConvertUsers;
 import spring.facebook.utils.UserDetailsServiceImpl;
 import spring.facebook.utils.WorksWithEntities;
 import static org.junit.Assert.assertEquals;
@@ -33,6 +34,11 @@ public class ChecksTest {
         @Bean
         public Checks getChecksInstance() {
             return new Checks();
+        }
+        
+        @Bean
+        public ConvertUsers getConvertUsersMock() {
+            return mock(ConvertUsers.class);
         }
         
         @Bean

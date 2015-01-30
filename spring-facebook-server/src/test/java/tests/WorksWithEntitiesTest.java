@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.FacebookProfile;
-import org.springframework.social.facebook.api.FeedOperations;
 import org.springframework.social.facebook.api.Post;
 import org.springframework.social.facebook.api.Reference;
 import org.springframework.social.facebook.api.UserOperations;
@@ -24,6 +23,7 @@ import spring.facebook.entities.FacebookPost;
 import spring.facebook.entities.User;
 import spring.facebook.utils.Authentications;
 import spring.facebook.utils.Checks;
+import spring.facebook.utils.ConvertUsers;
 import spring.facebook.utils.UserDetailsServiceImpl;
 import spring.facebook.utils.WorksWithEntities;
 import static org.junit.Assert.assertEquals;
@@ -54,6 +54,11 @@ public class WorksWithEntitiesTest {
         }
         
         @Bean
+        public ConvertUsers getConvertUsersMock() {
+            return mock(ConvertUsers.class);
+        }
+        
+        @Bean
         public DatabaseIO getDatabaseIOMock() {
             return mock(DatabaseIO.class);
         }
@@ -79,9 +84,6 @@ public class WorksWithEntitiesTest {
         
     @Autowired
     private Facebook facebook;
-    
-    @Autowired
-    private FeedOperations feedOperations;
     
     @Autowired
     private UserOperations userOperations;

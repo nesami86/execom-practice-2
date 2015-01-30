@@ -187,6 +187,12 @@ public class WorksWithEntitiesTest {
     }
     
     @Test
+    public void getPostsCommentsTest() {
+        List<Comment> comments = new ArrayList<Comment>();
+        assertEquals(comments, worksWithEntities.getPostsComments(post, facebookPost));
+    }
+    
+    @Test
     public void deleteUnsynchronizedFacebookUserTest() {
         when(databaseIO.getUserFromDbByEmail(anyString())).thenReturn(user);
         when(user.getUserId()).thenReturn((long) 1);
